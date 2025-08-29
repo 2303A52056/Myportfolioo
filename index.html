@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume Builder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 20px;
+      background: #f0f2f5;
+    }
+    h1, h2 { text-align: center; }
+    .container {
+      display: flex; gap: 20px;
+    }
+    form, .preview {
+      flex: 1;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input, textarea {
+      width: 100%; padding: 8px; margin-top: 4px;
+      border: 1px solid #ccc; border-radius: 4px;
+    }
+    button {
+      margin-top: 15px; padding: 10px 15px;
+      background: #007bff; color: white;
+      border: none; border-radius: 4px; cursor: pointer;
+    }
+    button:hover { background: #0056b3; }
+    .resume {
+      line-height: 1.5;
+    }
+    .resume h2 {
+      margin-top: 20px; border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Resume Builder</h1>
+  <div class="container">
+    <form id="resumeForm">
+      <label>Full Name</label>
+      <input type="text" id="name" placeholder="John Doe">
+
+      <label>Email</label>
+      <input type="email" id="email" placeholder="john@example.com">
+
+      <label>Phone</label>
+      <input type="text" id="phone" placeholder="123-456-7890">
+
+      <label>Summary</label>
+      <textarea id="summary" placeholder="Write a short professional summary"></textarea>
+
+      <label>Education</label>
+      <textarea id="education" placeholder="Degree, School, Year"></textarea>
+
+      <label>Experience</label>
+      <textarea id="experience" placeholder="Job Title, Company, Duration, Achievements"></textarea>
+
+      <label>Skills</label>
+      <textarea id="skills" placeholder="List your skills separated by commas"></textarea>
+
+      <button type="button" onclick="generateResume()">Generate Resume</button>
+    </form>
+
+    <div class="preview">
+      <h2>Live Preview</h2>
+      <div id="resumeOutput" class="resume"></div>
+    </div>
+  </div>
+
+  <script>
+    function generateResume() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const summary = document.getElementById("summary").value;
+      const education = document.getElementById("education").value;
+      const experience = document.getElementById("experience").value;
+      const skills = document.getElementById("skills").value;
+
+      document.getElementById("resumeOutput").innerHTML = `
+        <h1>${name}</h1>
+        <p><strong>Email:</strong> ${email} | <strong>Phone:</strong> ${phone}</p>
+        <h2>Summary</h2>
+        <p>${summary}</p>
+        <h2>Education</h2>
+        <p>${education.replace(/\\n/g,"<br>")}</p>
+        <h2>Experience</h2>
+        <p>${experience.replace(/\\n/g,"<br>")}</p>
+        <h2>Skills</h2>
+        <p>${skills}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
